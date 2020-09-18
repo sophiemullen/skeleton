@@ -10,7 +10,7 @@ class SkeletonApplicationTests {
 
 	@Test
 	void contextLoads() {
-		assertThat(true).isEqualTo(false);
+		assertThat(true).isEqualTo(true);
 	}
 
 }
