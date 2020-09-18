@@ -2,7 +2,7 @@ pipeline {
     agent { docker { image 'openjdk:11-jdk' } }
 
     stages {
-        stage('Build') {
+        stage('Assemble') {
             steps {
                 echo 'Building..'
                 sh './gradlew assemble'
