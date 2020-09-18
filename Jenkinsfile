@@ -14,7 +14,12 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh './jenkins/scripts/test.sh'
+                sh './gradlew test'
+            }
+            post {
+                always {
+                     junit 'target/surefire-reports/*.xml'
+                }
             }
         }
         stage('Deploy') {
