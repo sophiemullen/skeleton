@@ -16,11 +16,11 @@ pipeline {
                 echo 'Testing..'
                 sh './gradlew test'
             }
-//             post {
-//                 always {
-//                       junit 'build/reports/**/*.xml'
-//                 }
-//             }
+            post {
+                always {
+                      junit 'build/test-results/test/*.xml'
+                }
+            }
         }
         stage('Deploy') {
             steps {
