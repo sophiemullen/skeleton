@@ -15,7 +15,8 @@ pipeline {
             }
             post {
                always {
-                    junit 'build/reports/tests/test/*.html'
+                    echo 'Test reports'
+//                     junit 'build/reports/tests/test/*.html'
                }
             }
         }
