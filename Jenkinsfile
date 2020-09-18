@@ -23,8 +23,7 @@ pipeline {
         stage('Checkstyle') {
             steps {
                 echo 'Checking checkstyle....'
-                sh './gradlew checkstyleMain'
-                sh './gradlew checkstyleTest'
+//                 sh './gradlew checkstyleMain checkstyleTest'
             }
         }
     }
