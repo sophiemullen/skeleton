@@ -1,5 +1,5 @@
 
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jenkins-deployment
@@ -14,20 +14,13 @@ spec:
         app: jenkins
     spec:
       containers:
-        - name: Jenkins-blueocean
+        - name: jenkins-blueocean
           image: jenkinsci/blueocean
           ports:
             - containerPort: 8080
-volumeMounts:
-  - name: jenkins-home
-    mountPath: /var/jenkins_home
-  volumes:
-    - name: jenkins-home
-      emptyDir: {}
-#volumeMounts:
-#  - name: jenkins-home
-#    mountPath: /var/jenkins_home
-#  volumes:
-#    - name: jenkins-home
-#      hostPath:
-#        directory: /Users/sophiem/Projects/jenkins-data
+          volumeMounts:
+            - name: jenkins-home
+              mountPath: /var/jenkins_home
+      volumes:
+        - name: jenkins-home
+          emptyDir: {}
