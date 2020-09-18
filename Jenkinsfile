@@ -1,30 +1,29 @@
 pipeline {
     agent { docker { image 'openjdk:11-jdk' } }
 
-    environment {
-        CI = 'true'
-    }
     stages {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh './gradlew build'
+                sh './gradlew assemble'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
-                sh './gradlew test'
+                  echo 'Testing..'
+                  sh './gradlew test --continue'
             }
             post {
-                always {
-                      junit 'build/reports/tests/test/*.html'
-                }
+               always {
+                    junit 'build/reports/tests/test/*.html'
+               }
             }
         }
-        stage('Deploy') {
+        stage('Checkstyle') {
             steps {
-                echo 'Deploying....'
+                echo 'Checking checkstyle....'
+                sh './gradlew checkstyleMain'
+                sh './gradlew checkstyleTest'
             }
         }
     }
